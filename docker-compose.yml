@@ -1,0 +1,34 @@
+# Local production-like stack: MongoDB + the single-service app on http://localhost:5000
+#   docker compose up --build
+# Cloudinary credentials and the JWT secret are read from backend/.env.
+services:
+  mongo:
+    image: mongo:8
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ['CMD', 'mongosh', '--quiet', '--eval', 'db.adminCommand("ping")']
+      interval: 10s
+      retries: 5
+
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: backend/.env
+    environment:
+      NODE_ENV: production
+      MONGODB_URI: mongodb://mongo:27017
+      SERVE_CLIENT: 'true'
+      CLIENT_ORIGINS: http://localhost:5000
+      # Plain HTTP on localhost: cookies cannot be Secure here.
+      COOKIE_SECURE: 'false'
+      COOKIE_SAME_SITE: lax
+    ports:
+      - '5000:5000'
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+volumes:
+  mongo-data:

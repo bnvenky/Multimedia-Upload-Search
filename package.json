@@ -1,0 +1,21 @@
+{
+  "name": "multimedia-upload-search",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MediaVault — secure multimedia upload, preview and ranked search (React + Redux Toolkit + TanStack Query + Tailwind, Express 5 + MongoDB + Cloudinary + Socket.IO)",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "install:all": "npm install && npm --prefix backend install && npm --prefix frontend install",
+    "dev": "concurrently -n api,web -c magenta,cyan \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "dev:demo": "concurrently -n api,web -c magenta,cyan \"npm --prefix backend run dev:memory\" \"npm --prefix frontend run dev\"",
+    "seed": "npm --prefix backend run seed",
+    "lint": "npm --prefix backend run lint && npm --prefix frontend run lint",
+    "build": "npm --prefix frontend run build",
+    "start": "npm --prefix backend start"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}

@@ -1,0 +1,25 @@
+# Render Blueprint — one Docker web service (API + React app on the same origin).
+# Render dashboard → New → Blueprint → select this repository, then fill in the secret values.
+services:
+  - type: web
+    name: mediavault
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /api/v1/health
+    autoDeploy: true
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: CLOUDINARY_URL
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: CLIENT_ORIGINS
+        sync: false # e.g. https://mediavault.onrender.com
+      - key: TRUST_PROXY
+        value: '1'
+      - key: COOKIE_SECURE
+        value: 'true'
+      - key: COOKIE_SAME_SITE
+        value: lax
