@@ -8,7 +8,7 @@ A full-stack web app to **upload, preview and search** images, videos, audio and
 | **Backend** | Node.js · **Express 5** · **MongoDB Atlas** (Mongoose 9) · **Cloudinary** · **JWT** · **Socket.IO** · Zod · Pino |
 | **Docs & tooling** | **Swagger / OpenAPI 3** (generated from the validation schemas) · **Postman** collection · ESLint · GitHub Actions · Docker |
 
-> **Live demo:** https://multimedia-upload-search-x3jk.onrender.com/
+> **Live demo:** https://multimedia-upload-search-pntz.onrender.com
 
 ![Library](docs/screenshots/library.png)
 
